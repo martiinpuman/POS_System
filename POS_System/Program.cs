@@ -18,11 +18,15 @@ namespace POS_System
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
 
+
             builder.Services.AddDataServices();
 
             var config = builder.Configuration;
             builder.Services.AddAuthServices(config.GetConnectionString("AuthDBConnectionString")
                 ?? throw new Exception("Failed to fetch Auth Connection string"), config);
+
+            builder.Services.AddCascadingAuthenticationState();
+
 
             var app = builder.Build();
 
@@ -45,6 +49,7 @@ namespace POS_System
 
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.MapRazorComponents<App>()
                 .AddInteractiveServerRenderMode()

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POS_System.Data", "POS_Syst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS_System.Auth", "POS_System.Auth\POS_System.Auth.csproj", "{4E87751C-5214-4944-8D90-D99DD7A62A7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS_System.Shared", "POS_System.Shared\POS_System.Shared.csproj", "{33EBCA2D-B8D7-4508-B47E-C436301C9A1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4E87751C-5214-4944-8D90-D99DD7A62A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E87751C-5214-4944-8D90-D99DD7A62A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E87751C-5214-4944-8D90-D99DD7A62A7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33EBCA2D-B8D7-4508-B47E-C436301C9A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33EBCA2D-B8D7-4508-B47E-C436301C9A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33EBCA2D-B8D7-4508-B47E-C436301C9A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33EBCA2D-B8D7-4508-B47E-C436301C9A1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

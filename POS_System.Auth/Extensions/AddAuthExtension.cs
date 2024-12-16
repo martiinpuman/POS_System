@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using POS_System.Auth.Models;
+using POS_System.Auth.Services;
 using POS_System.Auth.Settings;
 using System;
 using System.Security.Claims;
@@ -24,11 +26,11 @@ namespace POS_System.Auth.Extensions
             services.AddDbContext<AuthDbContext>(options =>
                 options.UseNpgsql(connectionString));
 
-            // Register JWTSettings with IJWTSettings interface
             services.AddSingleton<IJWTSettings>(jwtSettings);
-            services.AddSingleton<ILockOutSettings>(lockoutSettings);
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddSingleton<IUserBuilder, UserBuilder>();
+
+            services.AddIdentity<ApplicationUser, Role>(options =>
             {
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
