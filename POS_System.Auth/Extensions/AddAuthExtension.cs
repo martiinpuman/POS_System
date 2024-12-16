@@ -46,8 +46,8 @@ namespace POS_System.Auth.Extensions
 
                 options.ClaimsIdentity.RoleClaimType = ClaimTypes.Role;
 
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+                options.Lockout.MaxFailedAccessAttempts = lockoutSettings.MaxFailedAccessAttempts;
+                options.Lockout.DefaultLockoutTimeSpan = lockoutSettings.DefaultLockoutTimeSpan;
             })
             .AddEntityFrameworkStores<AuthDbContext>()
             .AddDefaultTokenProviders();
@@ -57,7 +57,7 @@ namespace POS_System.Auth.Extensions
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
                 options.AccessDeniedPath = "/Account/AccessDenied";
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(jwtSettings.ExpirationTimeInMinutes);
+                options.ExpireTimeSpan = jwtSettings.ExpirationTime;
                 options.SlidingExpiration = true;
                 options.ClaimsIssuer = jwtSettings.Issuer;
             });

@@ -11,7 +11,7 @@ namespace POS_System.Auth.Settings
         string Key { get; set; }
         string Issuer { get; set; }
         string Audience { get; set; }
-        int ExpirationTimeInMinutes { get; set; }
+        TimeSpan ExpirationTime { get; set; }
     }
 
     public class JWTSettings : IJWTSettings
@@ -19,7 +19,7 @@ namespace POS_System.Auth.Settings
         public required string Key { get; set; }
         public required string Issuer { get; set; }
         public required string Audience { get; set; }
-        public required int ExpirationTimeInMinutes { get; set; }
+        public required TimeSpan ExpirationTime { get; set; }
 
     }
 }
