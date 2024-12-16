@@ -10,10 +10,12 @@ namespace POS_System.Data.Extensions
 {
     public static class AddDataExtension
     {
-        public static void AddDataServices(this IServiceCollection services)
+        public static IServiceCollection AddDataServices(this IServiceCollection services)
         {
             services.AddDbContext<DataDbContext>(options =>
                 options.UseNpgsql("xxxx"));
+
+            return services;
         }
     }
 }

@@ -7,9 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\POS_System.Data\POS_System.Data.csproj" />
+    <ProjectReference Include="..\POS_System.Auth\POS_System.Auth.csproj" />
     <ProjectReference Include="..\POS_System.Client\POS_System.Client.csproj" />
+    <ProjectReference Include="..\POS_System.Data\POS_System.Data.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
