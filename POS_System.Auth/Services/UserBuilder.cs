@@ -1,4 +1,5 @@
-﻿using POS_System.Auth.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using POS_System.Auth.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +26,7 @@ namespace POS_System.Auth.Services
     }
     public class UserBuilder : IUserBuilder
     {
-        public ApplicationUser User { get; private set; }
+        public ApplicationUser User { get; private set; } = new ApplicationUser();
 
         private readonly AuthDbContext _context;
 
@@ -57,6 +58,13 @@ namespace POS_System.Auth.Services
             {
                 return null;
             }
+
+            // Validate required properties
+            if (string.IsNullOrEmpty(User.FirstName) || string.IsNullOrEmpty(User.LastName))
+            {
+                throw new InvalidOperationException("FirstName and LastName are required.");
+            }
+
             await this._context.Users.AddAsync(this.User, ct);
             await this._context.SaveChangesAsync(ct);
             return this.User;
@@ -82,28 +90,56 @@ namespace POS_System.Auth.Services
 
         public IUserBuilder AddRole(Role role)
         {
-            this.User.Role.ToList().Add(role);
+            if(this.User.Role == null)
+            {
+                this.User.Role = new List<Role>();
+            }
+
+            this.User.Role.Add(role);
 
             return this;
         }
 
         public IUserBuilder AddRoles(IEnumerable<Role> roles)
         {
-            this.User.Role.ToList().AddRange(roles);
+            if(this.User.Role == null)
+            {
+                this.User.Role = new List<Role>();
+            }
+
+            foreach (Role role in roles)
+            {
+                this.User.Role.Add(role);
+            }
             return this;
         }
 
         public IUserBuilder AddPermissions(IEnumerable<Permission> permissions)
         {
-            this.User.Permissions = permissions;
+            if (this.User.Permissions == null)
+            {
+                this.User.Permissions = new List<Permission>();
+            }
+
+            foreach (var permission in permissions)
+            {
+                this.User.Permissions.Add(permission);
+            }
+
             return this;
         }
 
         public IUserBuilder AddPermission(Permission permission)
         {
-            this.User.Permissions = this.User.Permissions.Append(permission);
+            if (this.User.Permissions == null)
+            {
+                this.User.Permissions = new List<Permission>();
+            }
+
+            this.User.Permissions.Add(permission);
             return this;
         }
+
 
         public IUserBuilder SetPhoneNumber(string phonenumber)
         {
