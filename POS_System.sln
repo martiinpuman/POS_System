@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS_System", "POS_System\PO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS_System.Client", "POS_System.Client\POS_System.Client.csproj", "{2F343135-0017-4F4E-BC79-1793F77AA71A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS_System.Data", "..\POS_System.Data\POS_System.Data.csproj", "{2531C8F2-14E3-4B8C-AF00-A7E4EB96CD4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS_System.Data", "POS_System.Data\POS_System.Data.csproj", "{2531C8F2-14E3-4B8C-AF00-A7E4EB96CD4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
