@@ -4,16 +4,10 @@ using POS_System.Auth.Models;
 
 namespace POS_System.Auth
 {
-    public class AuthDbContext : IdentityDbContext<ApplicationUser, Role, Guid>
+    public class AuthDbContext(DbContextOptions<AuthDbContext> options) : IdentityDbContext<ApplicationUser, Role, Guid>(options)
     {
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-
-
-        public AuthDbContext(DbContextOptions<AuthDbContext> options)
-            : base(options)
-        {
-        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -43,3 +37,4 @@ namespace POS_System.Auth
         }
     }
 }
+

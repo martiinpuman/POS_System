@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 public class ApplicationUser : IdentityUser<Guid>
 {
-    // Add custom properties here
     [Required]
     public string FirstName { get; set; }
     [Required]
