@@ -12,7 +12,7 @@ namespace POS_System.Auth.Services
     public interface IUserBuilder
     {
         ApplicationUser User { get; }
-        Task<ApplicationUser> Build(CancellationToken ct = default);
+        ApplicationUser Build();
         IUserBuilder SetEmail(string email);
         IUserBuilder SetUsername(string username);
         IUserBuilder SetPassword(string password);
@@ -52,13 +52,8 @@ namespace POS_System.Auth.Services
         /// This method first checks if the cancellation token has requested cancellation. If it has, the method returns null.
         /// Otherwise, it adds the ApplicationUser object to the Users DbSet and saves the changes to the database.
         /// </remarks>
-        public ApplicationUser Build(CancellationToken ct = default)
+        public ApplicationUser Build()
         {
-            if (ct.IsCancellationRequested)
-            {
-                return null;
-            }
-
             // Validate required properties
             if (string.IsNullOrEmpty(User.FirstName) || string.IsNullOrEmpty(User.LastName))
             {
