@@ -34,7 +34,7 @@ namespace POS_System.Tests
         }
 
         [TestMethod]
-        public async Task Build_ShouldAddUserToDatabase()
+        public void Build_ShouldReturnBuiltUser()
         {
             // Arrange
             var user = new ApplicationUser
@@ -50,7 +50,7 @@ namespace POS_System.Tests
                         .SetLastName(user.LastName);
 
             // Act
-            var result = await _userBuilder.Build();
+            var result = _userBuilder.Build();
 
             // Assert
             Assert.IsNotNull(result);
@@ -58,11 +58,10 @@ namespace POS_System.Tests
             Assert.AreEqual(user.Email, result.Email);
             Assert.AreEqual(user.FirstName, result.FirstName);
             Assert.AreEqual(user.LastName, result.LastName);
-            Assert.AreEqual(1, await _context.Users.CountAsync());
         }
 
         [TestMethod]
-        public async Task Build_ShoulReturnBuiltUser()
+        public void Build_ShoulReturnBuiltUser()
         {
             // Arrange
             var user = new ApplicationUser
@@ -91,7 +90,7 @@ namespace POS_System.Tests
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public async Task Build_ShouldThrowException_WhenFirstNameIsMissing()
+        public void Build_ShouldThrowException_WhenFirstNameIsMissing()
         {
             // Arrange
             var user = new ApplicationUser
@@ -105,12 +104,12 @@ namespace POS_System.Tests
                         .SetLastName(user.LastName);
 
             // Act
-            await _userBuilder.Build();
+            _userBuilder.Build();
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public async Task Build_ShouldThrowException_WhenLastNameIsMissing()
+        public void Build_ShouldThrowException_WhenLastNameIsMissing()
         {
             // Arrange
             var user = new ApplicationUser
@@ -124,7 +123,7 @@ namespace POS_System.Tests
                         .SetFirstName(user.FirstName);
 
             // Act
-            await _userBuilder.Build();
+            _userBuilder.Build();
         }
 
         [TestMethod]
