@@ -1,6 +1,9 @@
+using FluentValidation.AspNetCore;
+using POS_System.Auth;
 using POS_System.Auth.Extensions;
 using POS_System.Client.Pages;
 using POS_System.Components;
+using POS_System.Data;
 using POS_System.Data.Extensions;
 
 namespace POS_System
@@ -20,6 +23,18 @@ namespace POS_System
 
 
             builder.Services.AddDataServices();
+
+            builder.Services.AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
+
+
+            builder.Services.AddMediatR(config =>
+            {
+                config.RegisterServicesFromAssemblies(
+                    typeof(Client._Imports).Assembly, 
+                    typeof(AuthDbContext).Assembly, 
+                    typeof(DataDbContext).Assembly);
+            });
 
             var config = builder.Configuration;
             builder.Services.AddAuthServices(config.GetConnectionString("AuthDBConnectionString")

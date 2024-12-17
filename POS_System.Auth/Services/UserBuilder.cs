@@ -37,21 +37,16 @@ namespace POS_System.Auth.Services
 
 
 
+
         /// <summary>
-        /// Asynchronously builds the ApplicationUser object by adding it to the database and saving the changes.
+        /// Builds the ApplicationUser object.
         /// </summary>
-        /// <param name="ct">A CancellationToken to observe while waiting for the task to complete.</param>
         /// <returns>
-        /// A task that represents the asynchronous operation. The task result contains the built ApplicationUser object.
-        /// If the operation is canceled, the task result is null.
+        /// The built ApplicationUser object.
         /// </returns>
-        /// <exception cref="Exception">
-        /// Thrown when there is an error while building the user.
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when  FirstNameor LastName is not set.
         /// </exception>
-        /// <remarks>
-        /// This method first checks if the cancellation token has requested cancellation. If it has, the method returns null.
-        /// Otherwise, it adds the ApplicationUser object to the Users DbSet and saves the changes to the database.
-        /// </remarks>
         public ApplicationUser Build()
         {
             // Validate required properties
@@ -71,7 +66,7 @@ namespace POS_System.Auth.Services
 
         public IUserBuilder SetUsername(string username)
         {
-            this.User.UserName = username;
+            this.User.UserName = new string(username);
             return this;
         }
 
