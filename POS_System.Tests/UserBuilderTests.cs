@@ -62,7 +62,7 @@ namespace POS_System.Tests
         }
 
         [TestMethod]
-        public async Task Build_ShouldReturnNull_WhenCancelled()
+        public async Task Build_ShoulReturnBuiltUser()
         {
             // Arrange
             var user = new ApplicationUser
@@ -76,14 +76,18 @@ namespace POS_System.Tests
                         .SetEmail(user.Email)
                         .SetFirstName(user.FirstName)
                         .SetLastName(user.LastName);
-            var cancellationToken = new CancellationToken(true);
 
             // Act
-            var result = await _userBuilder.Build(cancellationToken);
+            var result = _userBuilder.Build();
 
             // Assert
-            Assert.IsNull(result);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(user.UserName, result.UserName);
+            Assert.AreEqual(user.Email, result.Email);
+            Assert.AreEqual(user.FirstName, result.FirstName);
+            Assert.AreEqual(user.LastName, result.LastName);
         }
+
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]

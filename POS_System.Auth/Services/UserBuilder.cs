@@ -52,7 +52,7 @@ namespace POS_System.Auth.Services
         /// This method first checks if the cancellation token has requested cancellation. If it has, the method returns null.
         /// Otherwise, it adds the ApplicationUser object to the Users DbSet and saves the changes to the database.
         /// </remarks>
-        public async Task<ApplicationUser> Build(CancellationToken ct = default)
+        public ApplicationUser Build(CancellationToken ct = default)
         {
             if (ct.IsCancellationRequested)
             {
@@ -65,8 +65,6 @@ namespace POS_System.Auth.Services
                 throw new InvalidOperationException("FirstName and LastName are required.");
             }
 
-            await this._context.Users.AddAsync(this.User, ct);
-            await this._context.SaveChangesAsync(ct);
             return this.User;
         }
 
